@@ -1,0 +1,251 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------ */
+/* Theme system — CSS variables (no hard-coded colors in components)   */
+/* ------------------------------------------------------------------ */
+
+:root {
+  color-scheme: light;
+
+  --bg: #f8fafc;
+  --bg-soft: #eef2f7;
+  --card: #ffffff;
+  --card-soft: #f8fafc;
+  --border: #e2e8f0;
+  --ink: #0f172a;
+  --ink-soft: #475569;
+  --ink-faint: #94a3b8;
+
+  --primary: #4f46e5;
+  --primary-strong: #4338ca;
+  --primary-soft: #eef2ff;
+
+  --success: #16a34a;
+  --info: #0284c7;
+  --warning: #d97706;
+  --danger: #dc2626;
+
+  --chart-grid: #e2e8f0;
+  --chart-axis: #94a3b8;
+  --chart-ink: #0f172a;
+
+  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.06),
+    0 4px 16px rgba(15, 23, 42, 0.06);
+  --shadow-card-lg: 0 2px 4px rgba(15, 23, 42, 0.08),
+    0 12px 40px rgba(15, 23, 42, 0.1);
+}
+
+.dark {
+  color-scheme: dark;
+
+  --bg: #0f172a;
+  --bg-soft: #0b1120;
+  --card: #1e293b;
+  --card-soft: #16213a;
+  --border: #334155;
+  --ink: #f1f5f9;
+  --ink-soft: #cbd5e1;
+  --ink-faint: #64748b;
+
+  --primary: #818cf8;
+  --primary-strong: #a5b4fc;
+  --primary-soft: #312e81;
+
+  --success: #4ade80;
+  --info: #38bdf8;
+  --warning: #fbbf24;
+  --danger: #f87171;
+
+  --chart-grid: #334155;
+  --chart-axis: #64748b;
+  --chart-ink: #f1f5f9;
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3),
+    0 4px 16px rgba(0, 0, 0, 0.35);
+  --shadow-card-lg: 0 2px 4px rgba(0, 0, 0, 0.4),
+    0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-bg text-ink font-sans antialiased;
+    overflow-x: clip;
+  }
+  /* Keep anchored sections clear of the sticky mobile header. */
+  section[id],
+  div[id] {
+    scroll-margin-top: 5.5rem;
+  }
+  @media (min-width: 1024px) {
+    section[id],
+    div[id] {
+      scroll-margin-top: 1.5rem;
+    }
+  }
+  ::selection {
+    background: var(--primary);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+}
+
+@layer components {
+  .hero-glow {
+    background: radial-gradient(
+      38rem circle at 50% -12%,
+      var(--primary-soft),
+      transparent 72%
+    );
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-card);
+  }
+  .card-lg {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 1.25rem;
+    box-shadow: var(--shadow-card-lg);
+  }
+  .input {
+    @apply w-full rounded-xl border border-border bg-bg px-4 py-3 text-ink placeholder-inkfaint transition-colors focus:border-primary focus:outline-none;
+  }
+  .btn-primary {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold text-white transition-all hover:opacity-90 active:scale-[.98];
+    background: var(--primary);
+  }
+  .btn-ghost {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-border bg-card px-4 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-bg;
+  }
+  .section-title {
+    @apply text-lg font-bold text-ink sm:text-xl;
+  }
+  .section-sub {
+    @apply text-sm text-inkfaint;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Chart tooltip                                                       */
+/* ------------------------------------------------------------------ */
+
+.chart-tooltip {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow-card-lg);
+  padding: 0.6rem 0.8rem;
+  font-size: 0.8rem;
+  color: var(--ink);
+}
+
+/* ------------------------------------------------------------------ */
+/* Opacity-modified color utilities                                    */
+/* Tailwind v3 cannot apply opacity modifiers to CSS-variable colors,  */
+/* so the translucent variants used in the UI are declared here with   */
+/* color-mix().                                                        */
+/* ------------------------------------------------------------------ */
+
+.bg-bg\/50 {
+  background-color: color-mix(in srgb, var(--bg) 50%, transparent);
+}
+.bg-card\/90 {
+  background-color: color-mix(in srgb, var(--card) 90%, transparent);
+}
+.bg-primary\/10 {
+  background-color: color-mix(in srgb, var(--primary) 10%, transparent);
+}
+.bg-danger\/10 {
+  background-color: color-mix(in srgb, var(--danger) 10%, transparent);
+}
+.bg-warning\/10 {
+  background-color: color-mix(in srgb, var(--warning) 10%, transparent);
+}
+.bg-success\/10 {
+  background-color: color-mix(in srgb, var(--success) 10%, transparent);
+}
+.bg-info\/10 {
+  background-color: color-mix(in srgb, var(--info) 10%, transparent);
+}
+.bg-ink\/10 {
+  background-color: color-mix(in srgb, var(--ink) 10%, transparent);
+}
+.border-danger\/30 {
+  border-color: color-mix(in srgb, var(--danger) 30%, transparent);
+}
+.border-warning\/30 {
+  border-color: color-mix(in srgb, var(--warning) 30%, transparent);
+}
+.border-success\/30 {
+  border-color: color-mix(in srgb, var(--success) 30%, transparent);
+}
+.border-info\/30 {
+  border-color: color-mix(in srgb, var(--info) 30%, transparent);
+}
+.border-border\/60 {
+  border-color: color-mix(in srgb, var(--border) 60%, transparent);
+}
+
+/* ------------------------------------------------------------------ */
+/* Reduced motion                                                      */
+/* ------------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Print                                                               */
+/* ------------------------------------------------------------------ */
+
+@media print {
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-area {
+    display: block !important;
+  }
+  .card,
+  .card-lg {
+    background: #fff !important;
+    border-color: #ddd !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+  }
+  a {
+    text-decoration: none;
+  }
+}

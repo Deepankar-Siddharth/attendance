@@ -1,0 +1,77 @@
+name: Deploy BDSTrack to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/attendance.xlsx"
+      - "scripts/**"
+      - "src/**"
+      - "index.html"
+      - "public/**"
+      - "package.json"
+      - "package-lock.json"
+      - "vite.config.ts"
+      - "tsconfig.json"
+      - "tailwind.config.js"
+      - "postcss.config.js"
+      - ".github/workflows/deploy.yml"
+  workflow_dispatch:
+
+# Grants the built-in GITHUB_TOKEN permission to deploy to Pages.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One concurrent deployment at a time; supersede in-progress runs.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Process & validate Excel data
+        run: npm run process-data
+
+      - name: Build production bundle
+        run: npm run build
+
+      - name: Upload data-quality artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: data-quality-report
+          path: |
+            src/data/validation.json
+            src/data/issues.json
+          if-no-files-found: error
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

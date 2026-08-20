@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>BDSTrack — BDS Attendance Analytics</title>
+    <script>
+      // GitHub Pages SPA fallback: redirect any deep link to the hash route.
+      var path = window.location.pathname;
+      var base = "/attendance/";
+      if (path.startsWith(base) && path.length > base.length) {
+        var rest = path.slice(base.length).replace(/^\/+/, "");
+        if (rest && rest !== "404.html" && !rest.includes(".")) {
+          window.location.replace(base + "?#/" + rest);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      window.location.replace("/attendance/");
+    </script>
+  </body>
+</html>
