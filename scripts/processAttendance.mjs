@@ -73,7 +73,11 @@ const failStructural = (message) => {
 
 let wb;
 try {
-  if (!existsSync(EXCEL_PATH)) throw new Error(`Workbook not found: ${EXCEL_PATH}`);
+  if (!existsSync(EXCEL_PATH)) {
+    console.warn(`[WARN] Excel workbook not found at ${EXCEL_PATH}.`);
+    console.warn(`[WARN] Skipping data processing. The existing JSON data will be used.`);
+    process.exit(0);
+  }
   wb = XLSX.readFile(EXCEL_PATH, { cellDates: true });
 } catch (err) {
   console.error("[FATAL] Could not open the Excel workbook.");
@@ -82,7 +86,7 @@ try {
   process.exit(1);
 }
 
-log("BDSTrack Data Processing");
+log("Attendance Data Processing");
 log("");
 log("✓ Workbook loaded");
 
