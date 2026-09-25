@@ -116,7 +116,7 @@ export function StudentDashboardPage() {
             <Hash size={15} aria-hidden /> Roll No. {student.rollNo}
           </span>
           <span className="flex items-center gap-1.5">
-            <GraduationCap size={15} aria-hidden /> BDS 2nd Year
+            <GraduationCap size={15} aria-hidden /> Student
           </span>
           <span className="flex items-center gap-1.5">
             <CalendarRange size={15} aria-hidden /> {meta.period.label}

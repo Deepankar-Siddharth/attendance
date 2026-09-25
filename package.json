@@ -1,9 +1,9 @@
 {
-  "name": "bdstrack",
+  "name": "attendance-manager",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "BDSTrack — BDS attendance analytics portal. Track. Understand. Improve.",
+  "description": "Attendance Manager — Attendance analytics portal. Track. Understand. Improve.",
   "scripts": {
     "dev": "vite",
     "process-data": "node scripts/processAttendance.mjs",

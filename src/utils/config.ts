@@ -2,7 +2,7 @@
 // Thresholds and the target are intentionally configurable here so the
 // application can be tuned without touching component code.
 
-export const APP_NAME = "BDSTrack";
+export const APP_NAME = "Attendance Manager";
 export const APP_TAGLINE = "Track. Understand. Improve.";
 
 /** Minimum attendance required (percentage points). */
@@ -24,5 +24,5 @@ export const ATTENDANCE_THRESHOLDS = {
 } as const;
 
 /** Storage keys */
-export const THEME_STORAGE_KEY = "bdstrack-theme";
-export const UNLOCK_STORAGE_KEY = "bdstrack-unlocked";
+export const THEME_STORAGE_KEY = "attendance-manager-theme";
+export const UNLOCK_STORAGE_KEY = "attendance-manager-unlocked";

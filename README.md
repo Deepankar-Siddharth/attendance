@@ -1,7 +1,7 @@
-# BDSTrack — BDS Attendance Analytics Portal
+# Attendance Manager — Attendance Analytics Portal
 
 A private, static web portal that turns the class attendance Excel workbook into
-an interactive dashboard. Built for the BDS 2nd Year batch.
+an interactive dashboard. Built for all persons.
 
 **Track. Understand. Improve.**
 
