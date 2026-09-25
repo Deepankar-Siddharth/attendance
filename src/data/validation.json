@@ -1,0 +1,9 @@
+{
+  "summary": {
+    "totalStudents": 1,
+    "subjects": ["General Pathology", "Dental Material"],
+    "months": ["October"],
+    "period": { "label": "October to November" }
+  },
+  "generatedAt": "2026-09-25T12:00:00Z"
+}

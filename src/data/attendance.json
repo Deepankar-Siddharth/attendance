@@ -1,0 +1,44 @@
+{
+  "meta": {
+    "generatedAt": "2026-09-25T12:00:00Z",
+    "period": { "label": "October to November" },
+    "studentCount": 2,
+    "subjects": ["General Pathology", "Dental Material"]
+  },
+  "students": [
+    {
+      "rollNo": "1001",
+      "name": "Alice Smith",
+      "section": "Sep Batch",
+      "monthly": [
+        {
+          "month": "October",
+          "overall": { "attended": 12, "taken": 15, "pct": 80 },
+          "lecture": { "attended": 8, "taken": 10, "pct": 80, "excluded": false },
+          "practical": { "attended": 4, "taken": 5, "pct": 80, "excluded": false }
+        }
+      ],
+      "lecture": { "attended": 8, "taken": 10, "percentage": 80 },
+      "practical": { "attended": 4, "taken": 5, "percentage": 80 },
+      "total": { "attended": 12, "taken": 15, "percentage": 80, "excluded": [] },
+      "issues": [],
+      "subjects": {
+        "General Pathology": {
+          "subject": "General Pathology",
+          "monthly": [
+            {
+              "month": "October",
+              "overall": { "attended": 12, "taken": 15, "pct": 80 },
+              "lecture": { "attended": 8, "taken": 10, "pct": 80, "excluded": false },
+              "practical": { "attended": 4, "taken": 5, "pct": 80, "excluded": false }
+            }
+          ],
+          "lecture": { "attended": 8, "taken": 10, "percentage": 80 },
+          "practical": { "attended": 4, "taken": 5, "percentage": 80 },
+          "total": { "attended": 12, "taken": 15, "percentage": 80, "excluded": [] },
+          "issues": []
+        }
+      }
+    }
+  ]
+}
