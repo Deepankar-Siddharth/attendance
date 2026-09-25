@@ -148,6 +148,9 @@ function parseSubjectSheet(sheetName) {
 
   // Validate each month group's sub-header layout (accept minor typos).
   for (const m of months) {
+    if (norm(r6[m.col]) === "NAME" || norm(r6[m.col]) === "STUDENT NAME") {
+      m.col++;
+    }
     const labels = [0, 1, 2, 3, 4, 5].map((i) => norm(r6[m.col + i]));
     const ok =
       labels[0] === "LECTURE TAKEN" &&
